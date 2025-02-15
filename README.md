@@ -1,5 +1,6 @@
 # Project Name
-LINKY Online Store
+FIDI (Fine I'll Do It)
+Task manager app
 
 ## Overview
 -----------
