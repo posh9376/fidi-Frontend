@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Header from "./header";
 import add from './assets/add-circle-svgrepo-com.svg';
 import notebook from './assets/note-svgrepo-com.svg';
+import tasks from './assets/task-list-svgrepo-com.svg'
+import login from './assets/login-svgrepo-com (3).svg'
 import Mainpage from './mainpage';
 import NavItems from "./navItems";
 import Login from "./login";
@@ -32,7 +34,7 @@ function Homepage() {
         <div>
             <div className="d-flex gap-2" style={{ height: "100vh" }}>
                 <div className="left-div">
-                    <Link to='/todoos'><NavItems src={add} text="Tasks" /></Link>
+                    <Link to='/todoos'><NavItems src={tasks} text="Tasks" /></Link>
                     <Link to='/todos'><NavItems src={add} text="Add Task" /></Link>
                     <Link to='/notes'><NavItems src={notebook} text="Notebook" /></Link>
                     
@@ -41,7 +43,7 @@ function Homepage() {
                             Logout
                         </button>
                     ) : (
-                        <Link to='/login'><NavItems src={notebook} text="Login" /></Link>
+                        <Link to='/login'><NavItems src={login} text="Login" /></Link>
                     )}
                 </div>
 
