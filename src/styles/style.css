@@ -1,0 +1,97 @@
+.error{
+    border: 1px solid red;
+}
+
+.btn-header{
+    background-color: black;
+    color: white;
+    position: absolute;
+    left: 90%;
+    top: 6%;
+}
+.btn-header:hover{
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    box-shadow: 0 0 5px blue, 0 0 10px blue, 0 0 20px blue;
+}
+
+.left-div{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+}
+
+.right-div{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 70%;
+    height: 100%;
+    text-align: center;
+}
+
+.logo-img{
+    box-shadow: 0 0 5px blue, 0 0 10px blue, 0 0 20px blue;
+}
+
+li{
+    display: flex;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px blue, 0 0 10px blue, 0 0 20px blue;
+    list-style: none;
+    padding: 10px;
+    animation: glow 5s infinite ease-in-out;
+}
+
+li input{
+    cursor: pointer;
+    margin-right: 5px;
+    
+}
+.complete{
+    text-decoration: line-through;
+    box-shadow: 0 0 0;
+}
+
+.inner-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.inner-div p{
+    margin-top: 10px;
+}
+
+.inner-div h3{
+    margin-top: 7px;
+}
+.nav-items{
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.5s;
+    box-shadow: 0 0 0;
+}
+
+.nav-items:hover{
+    box-shadow: 0 0 5px blue, 0 0 10px blue, 0 0 15px blue;
+}
+
+@keyframes glow {
+    0% {
+      box-shadow: 0 0 5px blue, 0 0 10px blue, 0 0 15px blue;
+    }
+    50% {
+      box-shadow: 0 0 10px blue, 0 0 20px blue, 0 0 30px blue;
+    }
+    100% {
+      box-shadow: 0 0 5px blue, 0 0 10px blue, 0 0 15px blue;
+    }
+}
+
