@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Header from "./header";
 import add from './assets/add-circle-svgrepo-com.svg';
 import notebook from './assets/note-svgrepo-com.svg';
-import tasks from './assets/task-list-svgrepo-com.svg'
-import login from './assets/login-svgrepo-com (3).svg'
+import tasks from './assets/task-list-svgrepo-com.svg';
+import login from './assets/login-svgrepo-com (3).svg';
 import Mainpage from './mainpage';
 import NavItems from "./navItems";
 import Login from "./login";
@@ -14,13 +14,16 @@ import Signup from "./signup";
 
 function Homepage() {
     const navigate = useNavigate();
-    
-    // Check login status from local storage
+    const [hasAccount, setHasAccount] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
-    
 
+    // Listen for changes in localStorage (e.g., login/logout from another tab)
     useEffect(() => {
-        setIsLoggedIn(!!localStorage.getItem("token")); // Update state if local storage changes
+        const handleStorageChange = () => {
+            setIsLoggedIn(!!localStorage.getItem("token"));
+        };
+        window.addEventListener("storage", handleStorageChange);
+        return () => window.removeEventListener("storage", handleStorageChange);
     }, []);
 
     const handleLogout = () => {
@@ -52,9 +55,21 @@ function Homepage() {
                     <Routes>
                         <Route path="/todos" element={isLoggedIn ? <CreateTodo /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
                         <Route path="/notes" element={isLoggedIn ? <NotesList /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
-                        <Route path="/login" element={isLoggedIn ? <Mainpage /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
-                        <Route path="/todoos" element={isLoggedIn ? <Mainpage /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
-                        <Route path="/signup" element={isLoggedIn ? <Mainpage /> : <Signup />} />
+                        <Route path="/login" element={isLoggedIn ? <Mainpage /> : hasAccount ? (
+                                <Login setIsLoggedIn={setIsLoggedIn} setHasAccount={setHasAccount} />
+                            ) : (
+                                <Signup setHasAccount={setHasAccount} />
+                            )} />
+                        <Route path="/todoos" element={
+                            isLoggedIn ? (
+                                <Mainpage />
+                            ) : hasAccount ? (
+                                <Login setIsLoggedIn={setIsLoggedIn} setHasAccount={setHasAccount} />
+                            ) : (
+                                <Signup setHasAccount={setHasAccount} />
+                            )
+                        } />
+                        <Route path="/signup" element={isLoggedIn ? <Mainpage /> : <Signup setHasAccount={setHasAccount} />} />
                     </Routes>
                 </div>
             </div>

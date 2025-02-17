@@ -16,8 +16,6 @@ export default function TodoList() {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Token not found");
 
-      console.log(token);
-      
       const response = await axios.get("https://fidi-backend-xs2o.onrender.com/todoos", {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -42,7 +40,7 @@ export default function TodoList() {
       });
 
       setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== todoId));
-      console.log("Todo deleted successfully");
+
     } catch (error) {
       console.error("Error deleting todo:", error.response?.data || error.message);
       alert(error.response?.data?.msg || "Failed to delete todo");

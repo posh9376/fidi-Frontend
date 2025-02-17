@@ -1,16 +1,27 @@
 /* eslint-disable react/prop-types */
-// import logo from './assets/logo5.png';
+
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
-function Login({setIsLoggedIn}) {
+
+function Login({setIsLoggedIn, setHasAccount}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordErrorClass, setPasswordErrorClass] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    
+
+    const navigate = useNavigate()
+
+    const handleLogin = ()=>{
+        setHasAccount(false)
+        navigate('/signup')
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
 
         // Check for empty fields
         if (!email || !password) {
@@ -106,7 +117,7 @@ function Login({setIsLoggedIn}) {
                     <button className="btn btn-primary w-100 py-2 mb-2" type="submit">Sign in</button>
 
                     {/* Signup Link */}
-                    <p className='text-light'>Don't have an account? <a href="/signup">Sign up</a></p>
+                    <p className='text-light'>Don't have an account? <button  className="btn btn-primary " onClick={handleLogin} >Sign up</button></p>
                     <p className="mt-5 mb-3 text-body-secondary">© 2025</p>
                 </form>
             </main>

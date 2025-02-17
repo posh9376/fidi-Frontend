@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import './styles/style.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function Signup() {
+function Signup({setHasAccount}) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,10 +14,16 @@ function Signup() {
     const [passwordErrorClass, setPasswordErrorClass] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const navigate = useNavigate()
 
     const validateEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
+
+    const handleLogin = ()=>{
+        setHasAccount(true)
+        navigate('/login')
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -165,7 +173,7 @@ function Signup() {
                     </div>
 
                     <button className="btn btn-primary w-100 py-2 mb-2" type="submit">Sign up</button>
-                    <p className='text-light'>Already have an account? <a href="/login">Login</a></p>
+                    <p className='text-light'>Already have an account? <button className="btn btn-primary" onClick={handleLogin}>Login</button></p>
                     <p className="mt-5 mb-3 text-body-secondary">© 2025</p>
                 </form>
             </main>

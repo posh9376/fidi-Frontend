@@ -6,7 +6,6 @@ function Todo({ title, description, remainingTime,handleDelete }) {
   const [timeLeft, setTimeLeft] = useState(remainingTime);
 
   const handleChange = (e) => {
-    console.log(e.target.checked);
     setChecked(e.target.checked);
   };
 
