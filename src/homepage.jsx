@@ -11,13 +11,13 @@ import Login from "./login";
 import CreateTodo from "./createTodo";
 import NotesList from "./noteslist";
 import Signup from "./signup";
+import Welcome from "./welcome";
 
 function Homepage() {
     const navigate = useNavigate();
     const [hasAccount, setHasAccount] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
-    // Listen for changes in localStorage (e.g., login/logout from another tab)
     useEffect(() => {
         const handleStorageChange = () => {
             setIsLoggedIn(!!localStorage.getItem("token"));
@@ -30,7 +30,7 @@ function Homepage() {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         setIsLoggedIn(false);
-        navigate("/login"); // Redirect to login page
+        navigate("/login");
     };
 
     return (
@@ -53,6 +53,7 @@ function Homepage() {
                 <div className="right-div">
                     <Header />
                     <Routes>
+                        <Route path="/" element={isLoggedIn ? <Mainpage /> : <Welcome />} />
                         <Route path="/todos" element={isLoggedIn ? <CreateTodo /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
                         <Route path="/notes" element={isLoggedIn ? <NotesList /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
                         <Route path="/login" element={isLoggedIn ? <Mainpage /> : hasAccount ? (
