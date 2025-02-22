@@ -64,7 +64,6 @@ function Login({setIsLoggedIn, setHasAccount}) {
         <div className="d-flex align-items-center py-4 bg-outline-secondary">
             <main className="form-signin w-30 m-auto">
                 <h3>Welcome to FIDI</h3>
-                <p>A Task Management App</p>
                 <form onSubmit={handleSubmit}>
                     {/* <img className="mb-4 logo-img" src={logo} alt="Logo" width="72" height="57" /> */}
                     <h1 className="h3 mb-3 fw-normal">Please Login to continue</h1>
